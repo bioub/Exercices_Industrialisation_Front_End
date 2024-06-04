@@ -16,7 +16,7 @@ const apiBaseUrl = 'https://jsonplaceholder.typicode.com';
 /**
  * @returns {Promise<Todo[]>}
  */
-async function fetchTodos() {
+export async function fetchTodos() {
   const res = await fetch(apiBaseUrl + "/todos");
   return await res.json();
 }
@@ -25,7 +25,7 @@ async function fetchTodos() {
  * @param {TodoWithoutId} todoDto
  * @returns {Promise<Todo>}
  */
-async function postTodo(todoDto) {
+export async function postTodo(todoDto) {
   const res = await fetch(apiBaseUrl + "/todos", {
     method: "POST",
     body: JSON.stringify(todoDto),

@@ -1,3 +1,6 @@
+import { fetchTodos, postTodo } from "./api.js";
+import { createTodoItem } from "./todos.js";
+
 /** @type {HTMLFormElement} */
 const formEl = document.querySelector(".todo-form");
 
