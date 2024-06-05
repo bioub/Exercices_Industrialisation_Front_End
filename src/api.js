@@ -1,4 +1,4 @@
-const apiBaseUrl = 'https://jsonplaceholder.typicode.com';
+import config from './config.json';
 
 /**
  * @typedef {object} Todo
@@ -17,7 +17,7 @@ const apiBaseUrl = 'https://jsonplaceholder.typicode.com';
  * @returns {Promise<Todo[]>}
  */
 export async function fetchTodos() {
-  const res = await fetch(apiBaseUrl + "/todos");
+  const res = await fetch(config.apiBaseUrl + "/todos");
   return await res.json();
 }
 
@@ -26,7 +26,7 @@ export async function fetchTodos() {
  * @returns {Promise<Todo>}
  */
 export async function postTodo(todoDto) {
-  const res = await fetch(apiBaseUrl + "/todos", {
+  const res = await fetch(config.apiBaseUrl + "/todos", {
     method: "POST",
     body: JSON.stringify(todoDto),
     headers: {
