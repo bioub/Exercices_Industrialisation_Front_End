@@ -25,3 +25,42 @@ Déplacer le fichier `index.html` à la racine et c'est terminé.
 Remarquez que le CSS a également été buildé.
 
 Dans `api.js` remplacer la variable `apiBaseUrl` par un import du fichier `config.json` (qui contient la même valeur), exemple : [https://esbuild.github.io/content-types/#json](https://esbuild.github.io/content-types/#json)
+
+## TypeScript
+
+Installer `typescript` en `devDependencies`
+
+Générer la config `tsconfig.json` via la commande `npx tsc --init`
+
+Modifier le script `build` pour qu'il lance la commande `tsc --noEmit` avant d'appeler `vite build`
+
+Renommer les fichiers `api.js`, `main.js` et `todos.js` avec l'extension `.ts`
+
+Dans `api.ts` créer et exporter 2 types :
+
+- `Todo` (interface avec 3 clés `id`, `title` et `completed`)
+- `TodoWithoutId` (interface avec 2 clés `title` et `completed`)
+
+Ces interfaces remplacent les commentaires JSDoc (`/** @typedef ...`)
+
+Typer les paramètres d'entrées et de retour des fonction comme dans les commentaires JSDoc.
+
+Dans `createTodoItem` convertir `todo.id` en type string au moment de l'affecter à `divEl.dataset.todoId` :
+
+```ts
+divEl.dataset.todoId = String(todo.id);
+```
+
+Dans `main.ts` transformer les commentaires JSDOC `/** @type ...` par des "type assertions", exemple :
+
+```js
+/** @type {HTMLFormElement} */
+const formEl = document.querySelector(".todo-form");
+```
+
+deviendra 
+
+```ts
+const formEl = document.querySelector(".todo-form") as HTMLFormElement;
+```
+
