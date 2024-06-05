@@ -1,17 +1,13 @@
 import { fetchTodos, postTodo } from "./api.js";
 import { createTodoItem } from "./todos.js";
 
-/** @type {HTMLFormElement} */
-const formEl = document.querySelector(".todo-form");
+const formEl = document.querySelector(".todo-form") as HTMLFormElement;
 
-/** @type {HTMLInputElement} */
-const checkboxEl = document.querySelector(".todo-checkall");
+const checkboxEl = document.querySelector(".todo-checkall") as HTMLInputElement;
 
-/** @type {HTMLInputElement} */
-const inputEl = document.querySelector(".todo-input");
+const inputEl = document.querySelector(".todo-input") as HTMLInputElement;
 
-/** @type {HTMLDivElement} */
-const divEl = document.querySelector(".todo-list");
+const divEl = document.querySelector(".todo-list") as HTMLDivElement;
 
 formEl.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -35,8 +31,7 @@ formEl.addEventListener("submit", async (event) => {
 });
 
 checkboxEl.addEventListener("click", () => {
-  /** @type {NodeListOf<HTMLInputElement>} */
-  const completedList = divEl.querySelectorAll(".todo-completed");
+  const completedList = divEl.querySelectorAll<HTMLInputElement>(".todo-completed");
 
   for (const completedEl of completedList) {
     completedEl.checked = checkboxEl.checked;
@@ -44,17 +39,15 @@ checkboxEl.addEventListener("click", () => {
 });
 
 divEl.addEventListener("click", (event) => {
-  /** @type {HTMLElement} */
-  const target = event.target;
+  const target = event.target as HTMLElement;
 
   if (target.matches(".todo-btn-delete")) {
-    target.closest(".todo-item").remove();
+    target.closest(".todo-item")?.remove();
   }
 });
 
 divEl.addEventListener("dblclick", (event) => {
-  /** @type {HTMLElement} */
-  const target = event.target;
+  const target = event.target as HTMLElement;
 
   if (target.matches(".todo-title")) {
     const inputEl = document.createElement("input");
@@ -65,10 +58,9 @@ divEl.addEventListener("dblclick", (event) => {
 });
 
 divEl.addEventListener("keydown", (event) => {
-  /** @type {HTMLElement} */
-  const target = event.target;
+  const target = event.target as HTMLElement;
 
-  if (target.matches(".todo-title-edit")) {
+  if (target.matches(".todo-title-edit") && target instanceof HTMLInputElement) {
     if (event.code === "Enter") {
       const spanEl = document.createElement("span");
       spanEl.className = "todo-title";
@@ -80,10 +72,9 @@ divEl.addEventListener("keydown", (event) => {
 });
 
 window.addEventListener("click", (event) => {
-  /** @type {HTMLElement} */
-  const target = event.target;
+  const target = event.target as HTMLElement;
 
-  const inputEl = document.querySelector(".todo-title-edit");
+  const inputEl = document.querySelector(".todo-title-edit") as HTMLInputElement;
 
   if (!inputEl || target === inputEl) {
     return;
