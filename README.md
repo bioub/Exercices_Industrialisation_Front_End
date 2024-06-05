@@ -64,3 +64,26 @@ deviendra
 const formEl = document.querySelector(".todo-form") as HTMLFormElement;
 ```
 
+Dans `main.ts` transformer les lignes :
+
+```js
+spanEl.innerText = inputEl.value;
+```
+
+en 
+
+```ts
+spanEl.innerText = (inputEl as HTMLInputElement).value;
+```
+
+et la ligne :
+
+```js
+target.closest(".todo-item").remove();
+```
+
+en
+
+```ts
+target.closest(".todo-item")?.remove();
+```
